@@ -18,7 +18,7 @@ import {
 
 // Dados do Usuário
 const userData = {
-  name: "Kleber Almeida Toyota",
+  name: "Kleber Almeida Toyota (Kleber Tiko)",
   role: "AI Security Specialist",
   tagline: "Protegendo a fronteira entre Inteligência Artificial e Cibersegurança.",
   about: "Sou um especialista focado na intersecção entre Segurança da Informação e Inteligência Artificial. Minha missão é garantir que sistemas baseados em IA sejam robustos, confiáveis e seguros contra ataques adversariais, injeção de prompt e exfiltração de dados.",
@@ -124,7 +124,7 @@ export default function App() {
             </div>
             <div className="flex flex-col">
               <span className="text-white font-bold tracking-tight text-lg leading-none group-hover:text-emerald-400 transition-colors">
-                Kleber Toyota
+                Kleber Tiko
               </span>
               <span className="text-xs text-slate-500 font-mono tracking-widest uppercase mt-1">
                 AI Security Specialist
