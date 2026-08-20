@@ -128,7 +128,7 @@ export default function CustomCursor() {
     };
 
     const onLeave = () => {
-      mouse.current.on = false;
+      mouse.current = { x: -9999, y: -9999, on: false };
       window.clearTimeout(idleTimer.current);
     };
 
@@ -172,6 +172,13 @@ export default function CustomCursor() {
           ctx.fillText(g.cipher, g.x, g.y);
         }
         ctx.globalAlpha = 1;
+      }
+
+      if (mx > -1000 && my > -1000) {
+        ctx.beginPath();
+        ctx.arc(mx, my, 3.5, 0, Math.PI * 2);
+        ctx.fillStyle = ink;
+        ctx.fill();
       }
 
       raf.current = requestAnimationFrame(draw);
