@@ -1,8 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 const IDLE_MS = 30_000;
-const LENS_DESKTOP = 300;
-const TOUCH_LIFT = 148;
+const LENS_PX = 300;
 const CIPHER = '0123456789ABCDEFΞΦΨΩΔЖБД#*+=/%';
 
 type Glyph = {
@@ -36,7 +35,7 @@ function collectGlyphs(): Glyph[] {
       if (!value) return NodeFilter.FILTER_REJECT;
       const parent = node.parentElement;
       if (!parent) return NodeFilter.FILTER_REJECT;
-      if (parent.closest('script, style, noscript, canvas, [data-cipher-skip]')) {
+      if (parent.closest('script, style, noscript, canvas, [data-cipher-skip], [data-cipher-unlocked]')) {
         return NodeFilter.FILTER_REJECT;
       }
       const rect = parent.getBoundingClientRect();
@@ -110,8 +109,7 @@ export default function CustomCursor() {
     const bg = getComputedStyle(document.documentElement).getPropertyValue('--color-bg').trim() || '#111';
     const ink = getComputedStyle(document.documentElement).getPropertyValue('--color-accent').trim() || '#7dffc0';
 
-    const lensRadius = () =>
-      coarse.current ? Math.min(220, Math.max(150, window.innerWidth * 0.42)) : LENS_DESKTOP;
+    const lensRadius = () => LENS_PX;
 
     const sizeCanvas = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -133,7 +131,6 @@ export default function CustomCursor() {
     const openLens = (x: number, y: number) => {
       mouse.current = { x, y, on: true };
       scheduleIdle();
-      document.body.classList.add('cipher-taught');
     };
 
     const onMove = (e: MouseEvent) => {
@@ -145,15 +142,6 @@ export default function CustomCursor() {
       if (coarse.current) return;
       mouse.current = { x: -9999, y: -9999, on: false };
       window.clearTimeout(idleTimer.current);
-    };
-
-    const lensFromTouch = (t: Touch) => {
-      openLens(t.clientX, Math.max(28, t.clientY - TOUCH_LIFT));
-    };
-
-    const onTouch = (e: TouchEvent) => {
-      const t = e.touches[0] ?? e.changedTouches[0];
-      if (t) lensFromTouch(t);
     };
 
     const markDirty = () => {
@@ -223,16 +211,21 @@ export default function CustomCursor() {
 
     window.addEventListener('mousemove', onMove, { passive: true });
     document.documentElement.addEventListener('mouseleave', onLeave);
-    window.addEventListener('touchstart', onTouch, { passive: true });
-    window.addEventListener('touchmove', onTouch, { passive: true });
-    window.addEventListener('touchend', onTouch, { passive: true });
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onResize);
 
     const fontsReady = document.fonts?.ready?.then(markDirty);
     const observer = new MutationObserver(markDirty);
     const shell = document.querySelector('.site-shell');
-    if (shell) observer.observe(shell, { subtree: true, childList: true, characterData: true });
+    if (shell) {
+      observer.observe(shell, {
+        subtree: true,
+        childList: true,
+        characterData: true,
+        attributes: true,
+        attributeFilter: ['data-cipher-unlocked'],
+      });
+    }
 
     raf.current = requestAnimationFrame(draw);
 
@@ -240,9 +233,6 @@ export default function CustomCursor() {
       document.body.classList.remove('custom-cursor');
       window.removeEventListener('mousemove', onMove);
       document.documentElement.removeEventListener('mouseleave', onLeave);
-      window.removeEventListener('touchstart', onTouch);
-      window.removeEventListener('touchmove', onTouch);
-      window.removeEventListener('touchend', onTouch);
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onResize);
       observer.disconnect();

@@ -66,7 +66,9 @@ export default function App() {
           <Contact />
         </main>
 
-        <footer className="site-footer">klebertiko · ai security · {new Date().getFullYear()}</footer>
+        <footer data-cipher-skip className="site-footer">
+          klebertiko · ai security · {new Date().getFullYear()}
+        </footer>
       </div>
     </div>
   );
