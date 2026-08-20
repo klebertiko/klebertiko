@@ -10,6 +10,7 @@ type SiteHeaderProps = {
 export default function SiteHeader({ active, scrollTo, menuOpen, setMenuOpen }: SiteHeaderProps) {
   return (
     <header
+      data-cipher-skip
       className="sticky top-0 z-[300] border-b border-[var(--color-border)] bg-[var(--color-bg)]/92 backdrop-blur-sm"
       style={{ minHeight: 'var(--banner-height)' }}
     >

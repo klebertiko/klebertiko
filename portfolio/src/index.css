@@ -471,6 +471,20 @@ button:focus-visible {
   height: 100%;
 }
 
+.cipher-hint {
+  display: none;
+}
+
+@media (pointer: coarse) {
+  .cipher-hint {
+    display: block;
+  }
+
+  body.cipher-taught .cipher-hint {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
