@@ -30,7 +30,7 @@ export const userData = {
   tagline:
     'Construo sistemas inteligentes com segurança rigorosa — identifico vulnerabilidades antes da exploração enquanto projeto soluções com LLMs e agentes.',
   about:
-    'AI Security Specialist e Principal Software Engineer. Atuo na fusão entre desenvolvimento com IA generativa e práticas sólidas de cibersegurança — de arquiteturas RAG e sistemas agenticos autônomos a ferramentas open-source como o JamStreapper para auditoria de rede. Olho software pela lente de SecDevOps e ethical hacking: pentest, OWASP e hardening desde o desenho. Na Black Box foco em segurança de IA; antes, mais de dez anos na Concrete Solutions liderando times, microserviços multi-cloud e pipelines de GenAI em projetos de missão crítica no setor financeiro e além.',
+    'AI Security Specialist e Principal Software Engineer. Atuo na fusão entre desenvolvimento com IA generativa e práticas sólidas de cibersegurança — de arquiteturas RAG e sistemas agenticos autônomos a ferramentas open-source como o JamStreapper para auditoria de rede. Olho software pela lente de SecDevOps e ethical hacking: pentest, OWASP e hardening desde o desenho. Na Black Box foco em segurança de IA; antes, mais de dez anos na Concrete Solutions · Accenture liderando times, microserviços multi-cloud e pipelines de GenAI em projetos de missão crítica no setor financeiro e além.',
   languages: ['Português (nativo)', 'Inglês (profissional)', 'Espanhol (básico)'],
   certifications: [
     'Kali Linux · Ethical Hacking & Pentest (Udemy)',
@@ -67,7 +67,7 @@ export const experience: ExperienceEntry[] = [
     ],
   },
   {
-    company: 'Concrete Solutions',
+    company: 'Concrete Solutions · Accenture',
     role: 'Líder Técnico · Arquiteto de Soluções · Eng. de Software Sênior',
     period: 'fev/2015 — out/2025',
     location: 'São Paulo, SP',
