@@ -20,35 +20,128 @@ export const userData = {
   name: 'Kleber Almeida Toyota',
   handle: 'Kleber Tiko',
   role: 'AI Security Specialist',
-  tagline: 'Encontro falhas em sistemas de IA antes que alguém mal-intencionado as explore.',
+  roleExtended: 'Principal Software Engineer · GenAI · Agentic AI · Ethical Hacker',
+  location: 'Florianópolis, SC — Brasil',
+  employer: {
+    company: 'Black Box',
+    title: 'AI Security Specialist',
+    since: 'nov/2025',
+  },
+  tagline:
+    'Construo sistemas inteligentes com segurança rigorosa — identifico vulnerabilidades antes da exploração enquanto projeto soluções com LLMs e agentes.',
   about:
-    'Atuo na interseção entre Segurança da Informação e Inteligência Artificial — red teaming, pentest e auditoria aplicados a modelos e agentes de IA. Meu foco é ataques adversariais, injeção de prompt e exfiltração de dados: as formas mais comuns pelas quais sistemas de IA falham na prática.',
+    'AI Security Specialist e Principal Software Engineer. Atuo na fusão entre desenvolvimento com IA generativa e práticas sólidas de cibersegurança — de arquiteturas RAG e sistemas agenticos autônomos a ferramentas open-source como o JamStreapper para auditoria de rede. Olho software pela lente de SecDevOps e ethical hacking: pentest, OWASP e hardening desde o desenho. Na Black Box foco em segurança de IA; antes, mais de dez anos na Concrete Solutions liderando times, microserviços multi-cloud e pipelines de GenAI em projetos de missão crítica no setor financeiro e além.',
+  languages: ['Português (nativo)', 'Inglês (profissional)', 'Espanhol (básico)'],
+  certifications: [
+    'Kali Linux · Ethical Hacking & Pentest (Udemy)',
+    'Security for Hackers: Code Auditing, Fuzzing (Pluralsight)',
+    'Imersão IA — Automação n8n · Google Gemini (Alura)',
+  ],
   social: {
     github: 'https://github.com/klebertiko',
     linkedin: 'https://www.linkedin.com/in/kleber-almeida-toyota/',
+    medium: 'https://medium.com/@klebertiko',
+    email: 'mailto:klebertiko@gmail.com',
   },
 };
 
+export type ExperienceEntry = {
+  company: string;
+  role: string;
+  period: string;
+  location: string;
+  highlights: string[];
+  current?: boolean;
+};
+
+export const experience: ExperienceEntry[] = [
+  {
+    company: 'Black Box',
+    role: 'AI Security Specialist',
+    period: 'nov/2025 — presente',
+    location: 'Florianópolis, SC',
+    current: true,
+    highlights: [
+      'Segurança aplicada a sistemas de IA generativa e agentes autônomos',
+      'Red teaming, threat modeling e hardening de pipelines com LLM',
+    ],
+  },
+  {
+    company: 'Concrete Solutions',
+    role: 'Líder Técnico · Arquiteto de Soluções · Eng. de Software Sênior',
+    period: 'fev/2015 — out/2025',
+    location: 'São Paulo, SP',
+    highlights: [
+      'Liderança técnica em projetos nacionais e internacionais de missão crítica',
+      'Microserviços em Java, Go e Python; padrões e design patterns em escala',
+      'CI/CD com Terraform e Kubernetes em multi-cloud (AWS, GCP, Azure)',
+      'SecDevOps, OWASP, pentest e blue team em esteiras de entrega',
+      'Data Lakes serverless e GenAI — prompt engineering, agents e structured outputs',
+    ],
+  },
+  {
+    company: 'Atos',
+    role: 'Senior Java Developer / Java Architect',
+    period: 'out/2013 — jan/2015',
+    location: 'Brasil',
+    highlights: ['Arquitetura e desenvolvimento Java em contexto enterprise'],
+  },
+  {
+    company: 'MAPFRE · Indra · Stefanini · TCS · outros',
+    role: 'Arquiteto Java · Tech Lead · Developer',
+    period: '2005 — 2013',
+    location: 'Brasil',
+    highlights: [
+      'Mais de oito anos em arquitetura e desenvolvimento Java em seguros, consultoria e integração',
+    ],
+  },
+];
+
 export const skills = [
   {
-    category: 'AI Security & Blue/Red Teaming',
+    category: 'AI Security & GenAI',
     icon: Brain,
-    items: ['Generative AI & Agentic AI', 'Ethical Hacking', 'Prompt Engineering', 'Fuzzing & Code Auditing', 'Penetration Testing'],
+    items: [
+      'Generative AI & Agentic AI',
+      'RAG & sistemas agenticos',
+      'LLMOps & Observability',
+      'Prompt Engineering',
+      'Ethical Hacking & Red Teaming',
+      'Fuzzing & Code Auditing',
+    ],
   },
   {
-    category: 'Frameworks & Compliance',
+    category: 'SecDevOps & AppSec',
     icon: Shield,
-    items: ['OWASP Security Standards', 'Blue/Red Team Operations', 'Secure Software Development LC', 'Security Advocacy', 'sAFE & Agile Methodologies', 'Risk Assessment'],
+    items: [
+      'OWASP · Pentest · Blue Team',
+      'SAST · DAST · Security Testing',
+      'Secure Software Development',
+      'Risk Assessment',
+      'Metodologias ágeis (SAFE)',
+    ],
   },
   {
-    category: 'AppSec & DevSecOps',
+    category: 'Cloud, Data & Observability',
     icon: Terminal,
-    items: ['SecDevOps Pipelines', 'SAST & DAST & Security Testing', 'Docker & Kubernetes', 'Terraform (IaC)', 'CI/CD (Jenkins/GitHub Actions)'],
+    items: [
+      'AWS · GCP · Azure (multi-cloud)',
+      'Terraform · Kubernetes · Docker',
+      'CI/CD (Jenkins · GitHub Actions)',
+      'Datadog · LLMOps pipelines',
+      'Data Lakes serverless',
+    ],
   },
   {
-    category: 'Ferramentas & Stacks',
+    category: 'Stacks & Ferramentas',
     icon: Cpu,
-    items: ['Java/Kotlin & Spring Boot', 'Python & GoLang', 'LangChain & Crew.ai', 'OWASP ZAP & Burp Suite', 'Metasploit & SQLMap'],
+    items: [
+      'Java/Kotlin · Spring Boot',
+      'Python · GoLang',
+      'LangChain · Crew.ai',
+      'OWASP ZAP · Burp Suite',
+      'Metasploit · SQLMap',
+    ],
   },
 ];
 
@@ -94,6 +187,16 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    title: 'JamStreapper',
+    slug: 'JamStreapper',
+    desc:
+      'Ferramenta open-source de Deep Packet Inspection e auditoria de rede para testes de intrusão — citada no meu trabalho com ethical hacking e segurança ofensiva.',
+    tech: ['Python', 'Scapy', 'Rich'],
+    link: 'https://github.com/klebertiko/JamStreapper',
+    icon: Waves,
+    featured: true,
+  },
+  {
     title: 'SinergIA ERP',
     slug: 'sinergia-erp',
     desc:
@@ -101,7 +204,7 @@ export const projects: Project[] = [
     tech: ['Next.js 14', 'Drizzle', 'Auth.js', 'Radix UI'],
     link: 'https://github.com/klebertiko/sinergia-erp',
     icon: Building2,
-    featured: true,
+    featured: false,
   },
   {
     title: 'FreelasMatch',
@@ -110,15 +213,6 @@ export const projects: Project[] = [
     tech: ['React 19', 'Vite', 'Radix UI'],
     link: 'https://github.com/klebertiko/FreelasMatch',
     icon: Briefcase,
-    featured: false,
-  },
-  {
-    title: 'JamStreapper',
-    slug: 'JamStreapper',
-    desc: 'Ferramenta de Deep Packet Inspection e interferência de rede para testes de intrusão.',
-    tech: ['Python', 'Scapy', 'Rich'],
-    link: 'https://github.com/klebertiko/JamStreapper',
-    icon: Waves,
     featured: false,
   },
   {

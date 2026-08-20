@@ -1,21 +1,29 @@
-import SectionHeading from './SectionHeading';
+import SectionPanel from './SectionPanel';
 import { userData } from '../data/portfolio';
 
 export default function Contact() {
   return (
-    <section id="contact" className="scroll-mt-24 pb-16">
-      <SectionHeading index="04" title="contact.sh" />
-      <p className="mb-6 max-w-md text-sm leading-relaxed text-[var(--color-text-dim)]">
-        Interessado em conversar sobre segurança de sistemas de IA? Chama no LinkedIn.
+    <SectionPanel id="contact" filename="./contact.sh" status="ready" className="min-h-[32vh]">
+      <p className="prompt-line">
+        <span className="prompt-line__user">$</span>
+        <span className="prompt-line__cmd"> ./connect --help</span>
       </p>
-      <a
-        href={userData.social.linkedin}
-        target="_blank"
-        rel="noreferrer"
-        className="inline-block rounded border border-[var(--color-accent)] px-6 py-3 text-sm text-[var(--color-accent)] transition-colors hover:bg-[var(--color-accent)] hover:text-[var(--color-bg)]"
-      >
-        ./connect --linkedin
-      </a>
-    </section>
+      <p className="mt-4 max-w-[55ch] font-sans text-base leading-relaxed text-[var(--color-text-dim)]">
+        Segurança de IA, arquitetura de agentes, SecDevOps ou red teaming — escolha o canal:
+      </p>
+      <div className="mt-6 flex flex-wrap gap-3">
+        <a
+          href={userData.social.linkedin}
+          target="_blank"
+          rel="noreferrer"
+          className="btn-primary"
+        >
+          exec connect.sh --linkedin
+        </a>
+        <a href={userData.social.email} className="btn-ghost">
+          mail klebertiko@gmail.com
+        </a>
+      </div>
+    </SectionPanel>
   );
 }

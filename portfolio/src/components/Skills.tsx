@@ -1,21 +1,17 @@
-import SectionHeading from './SectionHeading';
+import SectionPanel from './SectionPanel';
 import { skills } from '../data/portfolio';
 
 export default function Skills() {
   return (
-    <section id="skills" className="mb-32 scroll-mt-24">
-      <SectionHeading index="02" title="stack.json" />
-      <div className="grid gap-6 sm:grid-cols-2">
+    <SectionPanel id="skills" filename="./stack.json" status="indexed">
+      <div>
         {skills.map((s) => (
-          <div
-            key={s.category}
-            className="rounded border border-[var(--color-border)] bg-[var(--color-bg-raised)] p-5 transition-colors hover:border-[var(--color-border-hover)]"
-          >
-            <div className="mb-3 flex items-center gap-2 text-[var(--color-accent)]">
-              <s.icon size={16} />
-              <h3 className="text-xs font-semibold uppercase tracking-wider">{s.category}</h3>
-            </div>
-            <ul className="space-y-1 text-sm text-[var(--color-text-dim)]">
+          <div key={s.category} className="skill-block">
+            <h3 className="skill-block__title">
+              <s.icon size={14} className="text-[var(--color-accent)]" aria-hidden />
+              {s.category}
+            </h3>
+            <ul className="skill-list">
               {s.items.map((item) => (
                 <li key={item}>{item}</li>
               ))}
@@ -23,6 +19,6 @@ export default function Skills() {
           </div>
         ))}
       </div>
-    </section>
+    </SectionPanel>
   );
 }

@@ -1,66 +1,72 @@
-import { useEffect, useRef, useState } from 'react';
-import Sidebar from './components/Sidebar';
-import MobileNav from './components/MobileNav';
+import { useEffect, useState } from 'react';
+import SiteHeader from './components/SiteHeader';
+import CustomCursor from './components/CustomCursor';
+import Hero from './components/Hero';
 import About from './components/About';
+import Experience from './components/Experience';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import { NAV } from './components/nav';
 
 const SECTION_IDS = NAV.map(({ id }) => id);
+const SCROLL_OFFSET = 120;
+
+function resolveActiveSection() {
+  const scrollPos = window.scrollY + SCROLL_OFFSET;
+  let current = SECTION_IDS[0];
+
+  for (const id of SECTION_IDS) {
+    const el = document.getElementById(id);
+    if (el && el.offsetTop <= scrollPos) current = id;
+  }
+
+  return current;
+}
 
 export default function App() {
   const [active, setActive] = useState('about');
   const [menuOpen, setMenuOpen] = useState(false);
-  const sectionRefs = useRef<Map<string, Element>>(new Map());
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            const id = entry.target.id;
-            sectionRefs.current.set(id, entry.target);
-            setActive(id);
-          }
-        }
-      },
-      {
-        rootMargin: '120px 0px -80% 0px',
-        threshold: 0.1,
-      }
-    );
+    const updateActive = () => setActive(resolveActiveSection());
 
-    for (const id of SECTION_IDS) {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    }
+    updateActive();
+    window.addEventListener('scroll', updateActive, { passive: true });
+    window.addEventListener('resize', updateActive);
 
-    return () => observer.disconnect();
+    return () => {
+      window.removeEventListener('scroll', updateActive);
+      window.removeEventListener('resize', updateActive);
+    };
   }, []);
 
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (!el) return;
 
-    const targetScrollY = Math.max(0, el.getBoundingClientRect().top + window.scrollY - 120);
+    setActive(id);
+    const targetScrollY = Math.max(0, el.getBoundingClientRect().top + window.scrollY - 100);
     window.scrollTo({ top: targetScrollY, behavior: 'smooth' });
     setMenuOpen(false);
   };
 
   return (
-    <div style={{ fontFamily: 'var(--font-mono)' }} className="min-h-screen w-full">
-      <MobileNav active={active} scrollTo={scrollTo} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+    <div className="site-shell min-h-screen w-full">
+      <CustomCursor />
+      <SiteHeader active={active} scrollTo={scrollTo} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
-      <div className="mx-auto flex max-w-6xl gap-8 px-6 lg:px-12">
-        <Sidebar active={active} scrollTo={scrollTo} />
-
-        <main className="flex-1 py-16 lg:py-32">
+      <div className="site-main">
+        <Hero />
+        <main>
           <About />
+          <Experience />
           <Skills />
           <Projects />
           <Contact />
         </main>
+
+        <footer className="site-footer">klebertiko · ai security · {new Date().getFullYear()}</footer>
       </div>
     </div>
   );
